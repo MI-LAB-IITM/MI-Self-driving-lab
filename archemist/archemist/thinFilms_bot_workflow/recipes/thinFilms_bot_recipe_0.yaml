@@ -1,0 +1,299 @@
+# ============ Workflow Recipe ============
+#
+# general: this section describes the recipe general details
+#   name: the given recipe name
+#   id: the recipe unique workflow id
+#
+# materials: recipe materials section
+#   liquids: this section describes the liquids used in the recipe
+#     name: liquid name
+#     id: liquid unique workflow id
+#   solids: this section describes the solids used in the recipe
+#     name: solid name
+#     id: solid unique workflow id
+#
+# process: this section describes the experiment process. The process
+#             is represented using a finite state machine that is composed of
+#             state and their transitions. Note that a workflow can have any 
+#             number of states and their transitions.
+#   state_name: name of the state
+#   station: this section describes the station involved in this state
+#     type: the station's class name as defined in archemist.stations.X.state
+#           note that X stands for the stations's given module found in archemist's 
+#           stations module
+#     id: station unique workflow id
+#     process: this section describes the station process involved in the state
+#       type: station process class name as defined in archemist.stations.X.process
+#             note that X stands for the stations's given module found in archemist's 
+#             stations module
+#       operations: a list that describe key station ops used in the process
+#         name: name of the op that is going to be used as a key inside the process to retrieve
+#               the operation parameters
+#         op: class name of op to be executed as defined in archemist.stations.X.state
+#               note that X stands for the stations's given module found in archemist's 
+#               stations module
+#         parameters: op parameters
+#       args: any extra arguments needed to construct the process 
+#   transitions: this section describes current state transitions
+#     on_success: the new state the workflow will transition to in case the current state
+#                 is executed successfully
+#     on_success: the new state the workflow will transition to in case the current state
+#                 execution fails. Use default the failed_state to indicate the recipe has
+#                 completely failed
+# note that the process is considered complete when it reaches the end_state so
+# make sure your process terminates with the end_state
+
+general:
+  name: thin_films_recipe
+  id: 0
+steps:
+  - state_name: spincoat_sample_1
+    station:
+      type: EZSpinA1SpinCoaterStation
+      id: 0
+      process:
+        type: EZSpinA1SpinCoatingProcess
+        operations:
+          - name: spinCoating_op
+            op: EZSpinA1SpinCoatOp
+            parameters:
+              coating_rpm: 1000
+              coating_duration_in_seconds: 10
+        args:          
+          vial_number: 5
+          new_pipette_tip_required: True
+          eject_pipette_tip: True
+          aspiration_volume: 100
+          dispense_volume_per_pass: 100
+          volume_unit: uL
+          number_of_passes: 1
+          substrate_id: 0
+          pipette_tip_id: 0         
+    transitions:
+      on_success: spincoat_sample_2
+      on_fail: failed_state
+  - state_name: spincoat_sample_2
+    station:
+      type: EZSpinA1SpinCoaterStation
+      id: 0
+      process:
+        type: EZSpinA1SpinCoatingProcess
+        operations:
+          - name: spinCoating_op
+            op: EZSpinA1SpinCoatOp
+            parameters:
+              coating_rpm: 1000
+              coating_duration_in_seconds: 10
+        args:          
+          vial_number: 5
+          new_pipette_tip_required: True
+          eject_pipette_tip: True
+          aspiration_volume: 100
+          dispense_volume_per_pass: 100
+          volume_unit: uL
+          number_of_passes: 1
+          substrate_id: 0
+          pipette_tip_id: 0         
+    transitions:
+      on_success: spincoat_sample_3
+      on_fail: failed_state
+  - state_name: spincoat_sample_3
+    station:
+      type: EZSpinA1SpinCoaterStation
+      id: 0
+      process:
+        type: EZSpinA1SpinCoatingProcess
+        operations:
+          - name: spinCoating_op
+            op: EZSpinA1SpinCoatOp
+            parameters:
+              coating_rpm: 1000
+              coating_duration_in_seconds: 10
+        args:          
+          vial_number: 5
+          new_pipette_tip_required: True
+          eject_pipette_tip: True
+          aspiration_volume: 100
+          dispense_volume_per_pass: 100
+          volume_unit: uL
+          number_of_passes: 1
+          substrate_id: 0
+          pipette_tip_id: 0         
+    transitions:
+      on_success: spincoat_sample_4
+      on_fail: failed_state
+  - state_name: spincoat_sample_4
+    station:
+      type: EZSpinA1SpinCoaterStation
+      id: 0
+      process:
+        type: EZSpinA1SpinCoatingProcess
+        operations:
+          - name: spinCoating_op
+            op: EZSpinA1SpinCoatOp
+            parameters:
+              coating_rpm: 1000
+              coating_duration_in_seconds: 10
+        args:          
+          vial_number: 5
+          new_pipette_tip_required: True
+          eject_pipette_tip: True
+          aspiration_volume: 100
+          dispense_volume_per_pass: 100
+          volume_unit: uL
+          number_of_passes: 1
+          substrate_id: 0
+          pipette_tip_id: 0         
+    transitions:
+      on_success: spincoat_sample_5
+      on_fail: failed_state
+  - state_name: spincoat_sample_5
+    station:
+      type: EZSpinA1SpinCoaterStation
+      id: 0
+      process:
+        type: EZSpinA1SpinCoatingProcess
+        operations:
+          - name: spinCoating_op
+            op: EZSpinA1SpinCoatOp
+            parameters:
+              coating_rpm: 1000
+              coating_duration_in_seconds: 10
+        args:          
+          vial_number: 5
+          new_pipette_tip_required: True
+          eject_pipette_tip: True
+          aspiration_volume: 100
+          dispense_volume_per_pass: 100
+          volume_unit: uL
+          number_of_passes: 1
+          substrate_id: 0
+          pipette_tip_id: 0         
+    transitions:
+      on_success: spincoat_sample_6
+      on_fail: failed_state
+  - state_name: spincoat_sample_6
+    station:
+      type: EZSpinA1SpinCoaterStation
+      id: 0
+      process:
+        type: EZSpinA1SpinCoatingProcess
+        operations:
+          - name: spinCoating_op
+            op: EZSpinA1SpinCoatOp
+            parameters:
+              coating_rpm: 1000
+              coating_duration_in_seconds: 10
+        args:          
+          vial_number: 5
+          new_pipette_tip_required: True
+          eject_pipette_tip: True
+          aspiration_volume: 100
+          dispense_volume_per_pass: 100
+          volume_unit: uL
+          number_of_passes: 1
+          substrate_id: 0
+          pipette_tip_id: 0         
+    transitions:
+      on_success: spincoat_sample_7
+      on_fail: failed_state
+  - state_name: spincoat_sample_7
+    station:
+      type: EZSpinA1SpinCoaterStation
+      id: 0
+      process:
+        type: EZSpinA1SpinCoatingProcess
+        operations:
+          - name: spinCoating_op
+            op: EZSpinA1SpinCoatOp
+            parameters:
+              coating_rpm: 1000
+              coating_duration_in_seconds: 10
+        args:          
+          vial_number: 5
+          new_pipette_tip_required: True
+          eject_pipette_tip: True
+          aspiration_volume: 100
+          dispense_volume_per_pass: 100
+          volume_unit: uL
+          number_of_passes: 1
+          substrate_id: 0
+          pipette_tip_id: 0         
+    transitions:
+      on_success: spincoat_sample_8
+      on_fail: failed_state
+  - state_name: spincoat_sample_8
+    station:
+      type: EZSpinA1SpinCoaterStation
+      id: 0
+      process:
+        type: EZSpinA1SpinCoatingProcess
+        operations:
+          - name: spinCoating_op
+            op: EZSpinA1SpinCoatOp
+            parameters:
+              coating_rpm: 1000
+              coating_duration_in_seconds: 10
+        args:          
+          vial_number: 5
+          new_pipette_tip_required: True
+          eject_pipette_tip: True
+          aspiration_volume: 100
+          dispense_volume_per_pass: 100
+          volume_unit: uL
+          number_of_passes: 1
+          substrate_id: 0
+          pipette_tip_id: 0         
+    transitions:
+      on_success: spincoat_sample_9
+      on_fail: failed_state
+  - state_name: spincoat_sample_9
+    station:
+      type: EZSpinA1SpinCoaterStation
+      id: 0
+      process:
+        type: EZSpinA1SpinCoatingProcess
+        operations:
+          - name: spinCoating_op
+            op: EZSpinA1SpinCoatOp
+            parameters:
+              coating_rpm: 1000
+              coating_duration_in_seconds: 10
+        args:          
+          vial_number: 5
+          new_pipette_tip_required: True
+          eject_pipette_tip: True
+          aspiration_volume: 100
+          dispense_volume_per_pass: 100
+          volume_unit: uL
+          number_of_passes: 1
+          substrate_id: 0
+          pipette_tip_id: 0         
+    transitions:
+      on_success: spincoat_sample_10
+      on_fail: failed_state
+  - state_name: spincoat_sample_10
+    station:
+      type: EZSpinA1SpinCoaterStation
+      id: 0
+      process:
+        type: EZSpinA1SpinCoatingProcess
+        operations:
+          - name: spinCoating_op
+            op: EZSpinA1SpinCoatOp
+            parameters:
+              coating_rpm: 1000
+              coating_duration_in_seconds: 10
+        args:          
+          vial_number: 5
+          new_pipette_tip_required: True
+          eject_pipette_tip: True
+          aspiration_volume: 100
+          dispense_volume_per_pass: 100
+          volume_unit: uL
+          number_of_passes: 1
+          substrate_id: 0
+          pipette_tip_id: 0         
+    transitions:
+      on_success: end_state
+      on_fail: failed_state
